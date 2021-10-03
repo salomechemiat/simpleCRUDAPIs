@@ -27,6 +27,8 @@ return [
 
     'exposed_headers' => [],
 
+    'allow_methods'=> ['POST', 'PUT', 'GET', 'DELETE'],
+
     'max_age' => 0,
 
     'supports_credentials' => false,

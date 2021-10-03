@@ -12,6 +12,7 @@ class postsController extends Controller
     // }
      public function index()
     {
+      // dd("hellow world");
         return posts::all();
     }
  
@@ -23,13 +24,18 @@ class postsController extends Controller
     public function store(Request $request)
     {
 
+       $userid = $request['user_id']= \Auth::id();
+       // dd($request);
 
         $data =  request()->validate([
             'title' => 'required',
-            'blog' => 'required',]);
-        $posts = posts::create($data);
+            'blog' => 'required',
 
-        return response()->json($posts, 201);
+        ]);
+        
+        $post = posts::create($request->all());
+
+        return response()->json($post, 201);
     }
 
     public function update(Request $request, posts $posts)
@@ -44,6 +50,6 @@ class postsController extends Controller
     {
         $posts->delete();
 
-        return response()->json("Post deleted successfully", 204);
+        return response()->json($posts, 204);
     }//
 }
